@@ -7,7 +7,6 @@ interface Humano {
 
 function saudarComOla(pessoa: Humano) {
   console.log({pessoa});
-  
   console.log(`Olá, ${pessoa.nome}`);
 }
 
@@ -25,7 +24,13 @@ const pessoa: Humano = {
 
 saudarComOla(pessoa);
 mudarNome(pessoa, 'Rocha');
-// saudarComOla({nome: 'Felipe', idade: 29, altura: 1.75, peso: 42});
+saudarComOla({
+  nome: 'Felipe',
+  idade: 29,
+  altura: 1.75,
+  peso: 42,
+  saudar: (a: string) => console.log(a)
+});
 pessoa.saudar('Skywalker');
 
 // Usando Classes...
