@@ -1,4 +1,5 @@
-export function normalizarTransacao(transacao) {
+import { valueToNumber } from "./valueToNumber.js";
+function normalizarTransacao(transacao) {
     return {
         nome: transacao.Nome,
         id: transacao.ID,
@@ -6,9 +7,10 @@ export function normalizarTransacao(transacao) {
         status: transacao.Status,
         email: transacao.Email,
         moeda: transacao['Valor (R$)'],
-        valor: 0,
+        valor: valueToNumber(transacao['Valor (R$)']),
         pagamento: transacao['Forma de Pagamento'],
         novo: Boolean(transacao['Cliente Novo']),
     };
 }
+export { normalizarTransacao };
 //# sourceMappingURL=normalize.js.map

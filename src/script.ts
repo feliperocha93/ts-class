@@ -1,5 +1,5 @@
 import { fetchData } from "./fetchData.js";
-import { TransacaoAPI, normalizarTransacao } from './normalize.js';
+import { type TransacaoAPI, normalizarTransacao } from './normalize.js';
 
 async function handleData() {
   const data = await fetchData<TransacaoAPI[]>('https://api.origamid.dev/json/transacoes.json');
