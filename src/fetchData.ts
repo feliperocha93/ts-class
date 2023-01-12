@@ -1,4 +1,4 @@
-const fetchData = async <T>(url: string): Promise<T | null> => {
+async function fetchData<T>(url: string): Promise<T | null> {
   try {
     const res = await fetch(url);
 

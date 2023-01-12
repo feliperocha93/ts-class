@@ -1,4 +1,4 @@
-const fetchData = async (url) => {
+async function fetchData(url) {
     try {
         const res = await fetch(url);
         if (!res.ok)
@@ -10,6 +10,6 @@ const fetchData = async (url) => {
             console.error("fetchData: " + error.message);
         return null;
     }
-};
+}
 export { fetchData };
 //# sourceMappingURL=fetchData.js.map

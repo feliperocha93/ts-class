@@ -47,5 +47,6 @@ function normalizarTransacao(transacao: TransacaoAPI): Transacao {
 
 export { 
   normalizarTransacao,
-  type TransacaoAPI
+  type TransacaoAPI,
+  type Transacao
 }
