@@ -1,4 +1,5 @@
-import { valueToNumber } from "./valueToNumber.js";
+import { currencyToNumber } from "./currencyToNumber.js";
+import { stringToDate } from "./stringToDate.js";
 
 type TransacaoPagamento = "Boleto" | "Cartão de Crédito";
 type TransacaoStatus =
@@ -21,7 +22,7 @@ interface TransacaoAPI {
 interface Transacao {
   nome: string;
   id: number;
-  data: string;
+  data: Date;
   status: TransacaoStatus;
   email: string;
   moeda: string;
@@ -34,11 +35,11 @@ function normalizarTransacao(transacao: TransacaoAPI): Transacao {
   return {
       nome: transacao.Nome,
       id: transacao.ID,
-      data: transacao.Data,
+      data: stringToDate(transacao.Data),
       status: transacao.Status,
       email: transacao.Email,
       moeda: transacao['Valor (R$)'],
-      valor: valueToNumber(transacao['Valor (R$)']),
+      valor: currencyToNumber(transacao['Valor (R$)']),
       pagamento: transacao['Forma de Pagamento'],
       novo: Boolean(transacao['Cliente Novo']),
   }

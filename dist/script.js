@@ -5,9 +5,7 @@ async function handleData() {
     if (!data)
         return;
     const transacoes = data.map(normalizarTransacao);
-    transacoes?.forEach(item => {
-        console.log(item.email);
-    });
+    console.log(transacoes[0]);
 }
-console.log(await handleData());
+handleData();
 //# sourceMappingURL=script.js.map
