@@ -4,6 +4,7 @@ import {
   type TransacaoAPI,
   type Transacao,
   } from './normalize.js';
+import { Statistics } from "./Statistics.js";
 
 async function handleData() {
   const data = await fetchData<TransacaoAPI[]>('https://api.origamid.dev/json/transacoes.json');
@@ -13,8 +14,7 @@ async function handleData() {
   const transacoes = data.map(normalizarTransacao);
 
   fillTable(transacoes);
-
-  console.log(transacoes[0]);
+  fillStatistics(transacoes);
 }
 
 function fillTable(transactions: Transacao[]) {
@@ -32,6 +32,15 @@ function fillTable(transactions: Transacao[]) {
         <td>${t.status}</td>
       </tr>
     `
+  })
+}
+
+function fillStatistics(transactions: Transacao[]) {
+  const data = new Statistics(transactions);
+  const totalElement = document.querySelector<HTMLElement>("#total span");
+  if (totalElement) totalElement.innerText =data.total.toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL"
   })
 }
 
