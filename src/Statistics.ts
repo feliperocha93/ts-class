@@ -11,12 +11,14 @@ class Statistics {
   total;
   payment;
   status;
+  week;
 
   constructor(transactions: Transaction[]) {
     this.transactions = transactions;
     this.total = this.setTotal();
     this.payment = this.setPayment();
     this.status = this.setStatus();
+    this.week = this.setWeek();
   }
 
   private setTotal() {
@@ -29,6 +31,44 @@ class Statistics {
 
   private setStatus() {
     return countBy(this.transactions.map(({status}) => status));
+  }
+
+  private setWeek() {
+    interface Week {
+      sunday: number
+      monday: number
+      tuesday: number
+      wednesday: number
+      thursday: number
+      friday: number
+      saturday: number
+    }
+    enum WEEK {
+      sunday,
+      monday,
+      tuesday,
+      wednesday,
+      thursday,
+      friday,
+      saturday
+    }
+
+    const week: Week = {
+      sunday: 0,
+      monday: 0,
+      tuesday: 0,
+      wednesday: 0,
+      thursday: 0,
+      friday: 0,
+      saturday: 0
+    }
+
+    for(let i = 0; i < this.transactions.length; i++) {
+      const day = WEEK[this.transactions[i].data.getDay()] as keyof Week;
+      week[day] += 1;
+    }
+
+    return week;
   }
 }
 
