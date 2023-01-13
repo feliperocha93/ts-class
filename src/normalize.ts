@@ -1,37 +1,37 @@
 import { currencyToNumber } from "./currencyToNumber.js";
 import { stringToDate } from "./stringToDate.js";
 
-type TransacaoPagamento = "Boleto" | "Cartão de Crédito";
-type TransacaoStatus =
+type TransactionPagamento = "Boleto" | "Cartão de Crédito";
+type TransactionStatus =
   | "Paga"
   | "Recusada pela operadora de cartão"
   | "Agurdando pagamento"
   | "Estornada";
 
-interface TransacaoAPI {
+interface TransactionAPI {
   Nome: string;
   ID: number;
   Data: string;
-  Status: TransacaoStatus;
+  Status: TransactionStatus;
   Email: string;
   ["Valor (R$)"]: string;
-  ["Forma de Pagamento"]: TransacaoPagamento;
+  ["Forma de Pagamento"]: TransactionPagamento;
   ["Cliente Novo"]: number;
 }
 
-interface Transacao {
+interface Transaction {
   nome: string;
   id: number;
   data: Date;
-  status: TransacaoStatus;
+  status: TransactionStatus;
   email: string;
   moeda: string;
   valor: number | null;
-  pagamento: TransacaoPagamento;
+  pagamento: TransactionPagamento;
   novo: boolean;
 }
 
-function normalizarTransacao(transacao: TransacaoAPI): Transacao {
+function normalizeTransaction(transacao: TransactionAPI): Transaction {
   return {
       nome: transacao.Nome,
       id: transacao.ID,
@@ -46,7 +46,7 @@ function normalizarTransacao(transacao: TransacaoAPI): Transacao {
 }
 
 export { 
-  normalizarTransacao,
-  type TransacaoAPI,
-  type Transacao
+  normalizeTransaction,
+  type TransactionAPI,
+  type Transaction
 }

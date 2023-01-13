@@ -1,6 +1,6 @@
 import { currencyToNumber } from "./currencyToNumber.js";
 import { stringToDate } from "./stringToDate.js";
-function normalizarTransacao(transacao) {
+function normalizeTransaction(transacao) {
     return {
         nome: transacao.Nome,
         id: transacao.ID,
@@ -13,5 +13,5 @@ function normalizarTransacao(transacao) {
         novo: Boolean(transacao['Cliente Novo']),
     };
 }
-export { normalizarTransacao };
+export { normalizeTransaction };
 //# sourceMappingURL=normalize.js.map

@@ -1,7 +1,7 @@
-import { Transacao } from "./normalize";
+import { Transaction } from "./normalize";
 
-type TransacionValue = Transacao & { valor: number };
-function filterValue(transaction: Transacao): transaction is TransacionValue {
+type TransacionValue = Transaction & { valor: number };
+function filterValue(transaction: Transaction): transaction is TransacionValue {
   return transaction.valor !== null;
 }
 
@@ -9,7 +9,7 @@ class Statistics {
   private transactions;
   total;
 
-  constructor(transactions: Transacao[]) {
+  constructor(transactions: Transaction[]) {
     this.transactions = transactions;
     this.total = this.setTotal();
   }

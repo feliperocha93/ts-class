@@ -1,16 +1,16 @@
 import { fetchData } from "./fetchData.js";
-import { normalizarTransacao, } from './normalize.js';
+import { normalizeTransaction, } from './normalize.js';
 import { Statistics } from "./Statistics.js";
 async function handleData() {
     const data = await fetchData('https://api.origamid.dev/json/transacoes.json');
     if (!data)
         return;
-    const transacoes = data.map(normalizarTransacao);
-    fillTable(transacoes);
-    fillStatistics(transacoes);
+    const transactions = data.map(normalizeTransaction);
+    fillTable(transactions);
+    fillStatistics(transactions);
 }
 function fillTable(transactions) {
-    const table = document.querySelector('#transacoes tbody');
+    const table = document.querySelector('#transactions tbody');
     if (!table)
         return;
     transactions.forEach(t => {
