@@ -43,6 +43,9 @@ function fillStatistics(transactions) {
             style: "currency",
             currency: "BRL"
         });
+    const dayElement = document.querySelector("#topday span");
+    if (dayElement)
+        dayElement.innerText = data.topDay[0];
 }
 handleData();
 //# sourceMappingURL=script.js.map

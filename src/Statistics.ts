@@ -12,6 +12,7 @@ class Statistics {
   payment;
   status;
   week;
+  topDay;
 
   constructor(transactions: Transaction[]) {
     this.transactions = transactions;
@@ -19,6 +20,7 @@ class Statistics {
     this.payment = this.setPayment();
     this.status = this.setStatus();
     this.week = this.setWeek();
+    this.topDay = this.setTopDay();
   }
 
   private setTotal() {
@@ -34,41 +36,42 @@ class Statistics {
   }
 
   private setWeek() {
-    interface Week {
-      sunday: number
-      monday: number
-      tuesday: number
-      wednesday: number
-      thursday: number
-      friday: number
-      saturday: number
-    }
-    enum WEEK {
-      sunday,
-      monday,
-      tuesday,
-      wednesday,
-      thursday,
-      friday,
-      saturday
+    interface WeeklyCount {
+      [key: string]: number
     }
 
-    const week: Week = {
-      sunday: 0,
-      monday: 0,
-      tuesday: 0,
-      wednesday: 0,
-      thursday: 0,
-      friday: 0,
-      saturday: 0
+    enum WEEK {
+      ["Domingo"],
+      ["Segunda-feira"],
+      ["Terça-feira"],
+      ["Quarta-feira"],
+      ["Quinta-feira"],
+      ["Sexta-feira"],
+      ["Sábado"],
+    }
+
+    const week: WeeklyCount = {
+      ["Domingo"]: 0,
+      ["Segunda-feira"]: 0,
+      ["Terça-feira"]: 0,
+      ["Quarta-feira"]: 0,
+      ["Quinta-feira"]: 0,
+      ["Sexta-feira"]: 0,
+      ["Sábado"]: 0
     }
 
     for(let i = 0; i < this.transactions.length; i++) {
-      const day = WEEK[this.transactions[i].data.getDay()] as keyof Week;
+      const day = WEEK[this.transactions[i].data.getDay()] as keyof WeeklyCount;
       week[day] += 1;
     }
 
+    console.log({week})
+
     return week;
+  }
+
+  private setTopDay() {
+    return Object.entries(this.week).sort(([,a], [,b]) => b - a)[0];
   }
 }
 

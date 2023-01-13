@@ -52,10 +52,13 @@ function fillStatistics(transactions: Transaction[]) {
   fillList(data.status, 'status');
 
   const totalElement = document.querySelector<HTMLElement>("#total span");
-  if (totalElement) totalElement.innerText =data.total.toLocaleString("pt-BR", {
+  if (totalElement) totalElement.innerText = data.total.toLocaleString("pt-BR", {
     style: "currency",
     currency: "BRL"
-  })
+  });
+
+  const dayElement = document.querySelector<HTMLElement>("#topday span");
+  if (dayElement) dayElement.innerText = data.topDay[0]
 }
 
 handleData()
