@@ -1,3 +1,4 @@
+import { CountList } from "./countBy.js";
 import { fetchData } from "./fetchData.js";
 import { 
   normalizeTransaction,
@@ -35,8 +36,21 @@ function fillTable(transactions: Transaction[]) {
   })
 }
 
+function fillList(list: CountList, containerId: string) {
+  const containerElement = document.getElementById(containerId);
+  if (containerElement) {
+    Object.keys(list).forEach(k => {
+      containerElement.innerHTML += `<p>${k}: ${list[k]}</p>`
+    })
+  }
+}
+
 function fillStatistics(transactions: Transaction[]) {
   const data = new Statistics(transactions);
+
+  fillList(data.payment, 'payment');
+  fillList(data.status, 'status');
+
   const totalElement = document.querySelector<HTMLElement>("#total span");
   if (totalElement) totalElement.innerText =data.total.toLocaleString("pt-BR", {
     style: "currency",

@@ -25,8 +25,18 @@ function fillTable(transactions) {
     `;
     });
 }
+function fillList(list, containerId) {
+    const containerElement = document.getElementById(containerId);
+    if (containerElement) {
+        Object.keys(list).forEach(k => {
+            containerElement.innerHTML += `<p>${k}: ${list[k]}</p>`;
+        });
+    }
+}
 function fillStatistics(transactions) {
     const data = new Statistics(transactions);
+    fillList(data.payment, 'payment');
+    fillList(data.status, 'status');
     const totalElement = document.querySelector("#total span");
     if (totalElement)
         totalElement.innerText = data.total.toLocaleString("pt-BR", {
