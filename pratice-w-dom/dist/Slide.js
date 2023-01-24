@@ -11,7 +11,7 @@ export default class Slide {
     pausedTimeout;
     thumbItems;
     thumb;
-    constructor(container, slides, controls, time = 2000) {
+    constructor(container, slides, controls, time = 5000) {
         this.container = container;
         this.slides = slides;
         this.controls = controls;
@@ -92,6 +92,7 @@ export default class Slide {
         }, 300);
     }
     continue() {
+        document.body.classList.remove('paused');
         this.pausedTimeout?.clear();
         if (this.paused) {
             this.paused = false;

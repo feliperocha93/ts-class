@@ -17,7 +17,7 @@ export default class Slide {
     container: Element,
     slides: Element[],
     controls: Element,
-    time = 2000
+    time = 5000
   ) {
     this.container = container;
     this.slides = slides;
@@ -105,6 +105,7 @@ export default class Slide {
   }
 
   continue() {
+    document.body.classList.remove('paused');
     this.pausedTimeout?.clear();
     if (this.paused) {
       this.paused = false;

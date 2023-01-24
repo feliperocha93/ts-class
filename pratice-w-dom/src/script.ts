@@ -5,5 +5,5 @@ const elements = document.getElementById('slide-elements');
 const controls = document.getElementById('slide-controls');
 
 if (container && controls && elements?.children.length) {
-  new Slide(container, Array.from(elements.children), controls);
+  new Slide(container, Array.from(elements.children), controls, 2000);
 }
